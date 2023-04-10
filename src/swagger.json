@@ -1,0 +1,123 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "E-commerce Api",
+        "description": "Una api para tengas la facilidad de contruir un E-commerce con carrito incluido",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/user": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Crea a un usuario(user) en el e-commerce",
+                "description": "Este endpoint esta creado para poder crear a un usuario(user)",
+                "requestBody": {
+                    "description": "Los campos que necesitas para crear un nuevo usuario(user) son: username, email, password, avatar(no obligatorio)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/login"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "created"
+                    },
+                    "409": {
+                        "description": "conflict",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Validation error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Database connection error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/{id}/avatar/:id": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Actuliza el nombre y apellido de un usuario",
+                "description": "Para actualizar el username del usuario y el avatar del usuario, mandar al body el: username y para el avatar: avatar, como ruta mandar el id del usuario",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "paths",
+                        "required": true,
+                        "description": "El id usuario que se va a actualizar"
+                    },
+                    {
+                        "name": "id",
+                        "in": "paths",
+                        "required": true,
+                        "description": "El id usuario al que se va actualizar el avatar"
+                    }
+                ],
+                "requestbody": {
+                    "description": "Los campos que se necesitan para actualizar el usurio son: username y para actualizar el avartar son: avatar",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/updateUserAndAvatar"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "login": {
+                "description": "la contraseña debe tener al menos 7 caracteres, al igual que el username",
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "example": "Sunnyhhsss"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "sunnysshhsss@gmail.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "1234567"
+                    }
+                }
+            },
+            "updateUserAndAvatar": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "example": "Sunny_lady"
+                    },
+                    "avatar": {
+                        "type": "string",
+                        "example": "photo.png"
+                    }
+                }
+            }
+        }
+    }
+}
