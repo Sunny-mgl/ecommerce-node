@@ -5,7 +5,7 @@ const transporter = require("../utils/mailer")
 const getAllUsers = async (req, res, next) => {
    try {
       const getUsers = await UserService.getAll()
-      res.status(201).json(getUsers)
+      res.json(getUsers)
    } catch (error) {
       next(error)
    }
@@ -37,7 +37,7 @@ const updateUser = async (req, res, next) => {
       const { id } = req.params
       const body = req.body
       await UserService.updates(body, id)
-      res.status(201).send()
+      res.status(204).send()
    } catch (error) {
       next(error)
    }
@@ -48,7 +48,7 @@ const updateAvatar = async (req, res, next) => {
       const { id } = req.params
       const updateBodyAv = req.body
       await UserService.updatesAvatar(updateBodyAv, id)
-      res.status(201).send()
+      res.status(204).send()
    } catch (error) {
       next(error)
       // console.log(error)

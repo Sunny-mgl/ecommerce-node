@@ -12,7 +12,7 @@ const createProductValidatior = [
         .withMessage('name format must be a string')
         .isLength({ min: 10, max: 30 })
         .withMessage('name must have a min of 6 characters and a max of 30'),
-    check(' description')
+    check('description')
         .exists()
         .withMessage('The description must exist')
         .notEmpty()
@@ -27,19 +27,26 @@ const createProductValidatior = [
         .notEmpty()
         .withMessage('price must bot be empty')
         .isInt()
-        .withMessage('price must be an integer'),
-    check('availableQty')
-        .withMessage('availableQty must exist')
+        .withMessage('price must be an integer'), check('availableQty')
         .notEmpty()
         .withMessage('availableQty must bot be empty')
         .isInt()
         .withMessage('availableQty must be an integer'),
-    check('userId')
-        .withMessage('userId must exist')
+    check('status')
+        .notEmpty()
+        .withMessage('status must bot be empty')
+        .isBoolean()
+        .withMessage('status must be an boolean'), check('userId')
         .notEmpty()
         .withMessage('userId must bot be empty')
         .isInt()
         .withMessage('userId must be an integer'),
+    check('productImage')
+        .notEmpty()
+        .withMessage('productImage must bot be empty')
+        .isString()
+        .withMessage('productImage must be an string'),
+    ,
 
     (req, res, next) => {
         validationResults(req, res, next)
@@ -56,7 +63,7 @@ const updateProductValidatior = [
         .withMessage('name format must be a string')
         .isLength({ min: 10, max: 30 })
         .withMessage('name must have a min of 6 characters and a max of 30'),
-    check(' description')
+    check('description')
         .exists()
         .withMessage('The description must exist')
         .notEmpty()
@@ -64,20 +71,28 @@ const updateProductValidatior = [
         .isString()
         .withMessage('The description format must be a string')
         .isLength({ max: 300 })
-        .withMessage('The description must have a max of 300 characters'),
-    check('availableQty')
-        .withMessage('availableQty must exist')
+        .withMessage('The description must have a max of 300 characters'), check('availableQty')
         .notEmpty()
         .withMessage('availableQty must bot be empty')
         .isInt()
         .withMessage('availableQty must be an integer'),
+    check('status')
+        .notEmpty()
+        .withMessage('status must bot be empty')
+        .isBoolean()
+        .withMessage('status must be an boolean'),
+    check('productImage')
+        .notEmpty()
+        .withMessage('productImage must bot be empty')
+        .isString()
+        .withMessage('productImage must be an string'),
 
-        (req, res, next) => {
-            validationResults(req, res, next)
-        }
+    (req, res, next) => {
+        validationResults(req, res, next)
+    }
 ]
 
-module.exports= {
+module.exports = {
     createProductValidatior,
     updateProductValidatior
 }

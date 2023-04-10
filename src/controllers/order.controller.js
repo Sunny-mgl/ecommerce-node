@@ -5,7 +5,7 @@ const OrderService = require('../services/orders.service')
 const getAllOrders = async (req, res, next) => {
     try {
         const getOrder = await orders.findAll()
-        res.status(201).json(getOrder)
+        res.json(getOrder)
     } catch (error) {
         next(error)
     }

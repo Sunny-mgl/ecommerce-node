@@ -1,15 +1,14 @@
 const {Router} = require('express')
-const { updateProductDescription, createProduct, getAllProduct,} = require('../controllers/product.controller')
+const { updateProductDescription, getAllProduct, createProduct,} = require('../controllers/product.controller')
+const { createProductValidatior, updateProductValidatior } = require('../validatiors/producst.validatior')
 // const { createProductValidatior, updateProductValidatior } = require('../validatiors/producst.validatior')
 
 const router= Router()
 
 router.get('/product', getAllProduct)
 
-router.get('/productsGreater0', )
+router.post('/products',createProduct)
 
-router.post('/products',  createProduct)
-
-router.put('/products/:id',updateProductDescription)
+router.put('/products/:id', updateProductValidatior, updateProductDescription)
 
 module.exports = router

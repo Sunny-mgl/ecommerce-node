@@ -43,7 +43,7 @@ const updateProductDescription = async (req, res, next) => {
     const {id} = req.params
     const updateDescription = req.body
      await ProductService.updatess(updateDescription, id)
-    res.status(201).send()
+    res.status(204).send()
   } catch (error) {
     next(error)
     // console.log(error)

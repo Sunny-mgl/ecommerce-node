@@ -36,11 +36,8 @@ const createUserValidatior = [
     }
 ]
 
-const updateUserValidatior = [
-    param('id')
-        .isInt()
-        .withMessage('the id must be an integer'),
-    check('username')
+const updateUserValidatior = 
+[ check('username')
         .exists()
         .withMessage('username must exist')
         .notEmpty()
