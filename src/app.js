@@ -20,3 +20,7 @@ errorHandler(app)
 app.listen(PORT, ()=> {
     console.log(`El servidor esta corriendo ${PORT}`)
 })
+
+// postgres://sunny:056E3EYL274UhLlKIzrlfRT4VZqLVKUG@
+// dpg-cgq68h0rddlaefde7960-a.oregon-postgres.render.com , esta parte es la qu me intersa
+// /ecommerce_48x1
